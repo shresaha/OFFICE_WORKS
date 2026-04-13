@@ -1,0 +1,69 @@
+.dashboard-container {
+  padding: 24px;
+  margin-top: 80px;
+}
+
+.dashboard-container h2 {
+  font-size: 1.4rem;
+  font-weight: 400; 
+  font-family: 'Times New Roman', Times, serif;
+  color: #222;
+  text-align: center;
+}
+
+.logout-btn {
+  position: fixed;       
+  top: 16px;            
+  right: 24px;           
+
+  z-index: 4000;     
+  pointer-events: auto;  
+
+  padding: 6px 14px;
+  background: #4f5bd5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px 24px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.modal-actions .ok {
+  background: #3f51b5;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+.modal-actions .cancel {
+  background: #ccc;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+}

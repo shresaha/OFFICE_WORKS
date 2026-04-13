@@ -1,0 +1,24 @@
+<div class="dashboard-container">
+
+  <h2 *ngIf="(user$ | async) === null">
+    Loading...
+  </h2>
+
+  <ng-container *ngIf="user$ | async as username">
+    <h2>Welcome {{ username }}</h2>
+    <button class="logout-btn" (click)="openLogoutModal()">
+      Logout
+    </button>
+  </ng-container>
+
+  <div class="modal-backdrop" *ngIf="showConfirm">
+    <div class="modal">
+      <p>Are you sure you want to logout?</p>
+      
+      <div class="modal-actions">
+        <button class="ok" (click)="confirmLogout()">Yes</button>
+        <button class="cancel" (click)="cancelLogout()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

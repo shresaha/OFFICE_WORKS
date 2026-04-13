@@ -1,0 +1,15 @@
+# Frontend
+node_modules/
+.angular/
+dist/
+
+# Backend
+venv/
+__pycache__/
+.env
+
+# Editor
+.vscode/
+
+# OS
+.DS_Store
