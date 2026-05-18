@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.schemas.auth_schemas import SignupRequest, LoginRequest, TokenResponse, MeResponse, UserResponse
 from app.services.auth_service import AuthService, InvalidCredentialsError
@@ -75,3 +75,5 @@ async def login(req: LoginRequest):
 )
 async def me(current_user: Dict[str, Any] = Depends(get_current_user)):
     return current_user
+
+

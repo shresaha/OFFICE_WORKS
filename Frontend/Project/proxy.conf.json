@@ -1,0 +1,18 @@
+{
+  "/proxy/common": {
+    "target": "https://gmap-common-apis.qualcomm.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/proxy/gmap": {
+    "target": "https://gmap.qualcomm.com",
+    "secure": true,
+    "changeOrigin": true
+  },
+  "/proxy/ui": {
+    "target": "https://gmap-ui-services.qualcomm.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

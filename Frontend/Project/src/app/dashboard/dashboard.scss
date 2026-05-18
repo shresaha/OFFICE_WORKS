@@ -1,38 +1,79 @@
 .dashboard-container {
   padding: 24px;
   margin-top: 80px;
+  overflow-x: visible;
 }
 
-.dashboard-container h2 {
-  font-size: 1.4rem;
-  font-weight: 400; 
-  font-family: 'Times New Roman', Times, serif;
-  color: #222;
-  text-align: center;
+.header-btn {
+  height: 30px;               
+  padding: 0 14px;
+  background: #4f5bd5;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;           
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.context-selectors {
+  position: fixed;
+  top: 16px;
+  right: 205px;                
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 4000;
+  margin-right: 30px
+}
+
+.dropdown-btn {
+  @extend .header-btn;
+  position: relative;
+}
+
+.dropdown-btn .arrow {
+  font-size: 12px;
+}
+
+.dropdown-btn select {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  appearance: none;
+}
+
+.table-btn {
+  @extend .header-btn;
+  position: fixed;
+  top: 16px;
+  right: 105px;
+  z-index: 4000;
 }
 
 .logout-btn {
-  position: fixed;       
-  top: 16px;            
-  right: 24px;           
+  @extend .header-btn;
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  z-index: 4000;
 
-  z-index: 4000;     
-  pointer-events: auto;  
+}
 
-  padding: 6px 14px;
-  background: #4f5bd5;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.dropdown-btn:hover, .table-btn:hover, .logout-btn:hover{
+  background: #3f49c5;
 }
 
 .modal-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
@@ -40,7 +81,7 @@
 }
 
 .modal {
-  background: white;
+  background: #ffffff;
   padding: 20px 24px;
   border-radius: 8px;
   width: 300px;
@@ -54,16 +95,59 @@
 }
 
 .modal-actions .ok {
-  background: #3f51b5;
-  color: white;
+  background-color: #3256D6;   
+  color: #ffffff;
   border: none;
-  padding: 6px 14px;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
+
 .modal-actions .cancel {
-  background: #ccc;
+  background-color: #E5E7EB;   
+  color: #111827;              
   border: none;
-  padding: 6px 14px;
-  border-radius: 4px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
 }
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 16px 0 12px;
+  align-items: center;
+}
+
+.tab-btn {
+  min-width: 140px;
+  height: 44px;             
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;  
+  border: none;
+  cursor: pointer;
+  background: #e6ebff;
+  color: #4f5bd5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: visible;
+
+}
+
+.tab-btn:hover {
+  background: #dde1ff;
+}
+
+.tab-btn.active {
+  background: #4f5bd5;
+  color: #ffffff;
+}
+
+

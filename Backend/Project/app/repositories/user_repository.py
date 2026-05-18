@@ -13,14 +13,11 @@ from app.models.user_model import (
     to_object_id,
 )
 
-
 class InvalidObjectIdError(ValueError):
     pass
 
-
 class DuplicateEmailError(Exception):
     pass
-
 
 def _collection() -> AsyncIOMotorCollection:
     db = get_database()

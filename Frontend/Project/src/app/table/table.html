@@ -1,0 +1,148 @@
+<div class="table-container">
+
+  <div class="table-header">
+    <h2 class="title">Data Table</h2>
+
+    <button type="button" class="add-btn" (click)="openAddModal(headers)" aria-label="Add new row">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <ng-container *ngIf="vm$ | async as vm">
+
+    <div *ngIf="vm.state === 'loading'">
+      Loading...
+    </div>
+
+    <div *ngIf="vm.state === 'error'" class="error">
+      {{ vm.error }}
+    </div>
+
+    <table *ngIf="vm.state === 'loaded'">
+      <thead>
+        <tr>
+          <th>Core Name</th>
+          <th *ngFor="let h of vm.data.headers">
+            {{ h.name }}
+          </th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let row of vm.data.rows">
+          <td>{{ row.core_name }}</td>
+
+          <td *ngFor="let h of vm.data.headers">
+            {{ row.values[h.id] || '' }}
+          </td>
+
+
+          <td class="action-col">
+            <!-- Edit -->
+            <button type="button" class="edit-btn" title="Edit" (click)="onEditRow(row, vm.data.headers)">
+              ✏️
+            </button>
+
+            <button type="button" class="delete-btn" title="Delete" (click)="onDeleteClick(row)">
+              🗑️
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-container *ngIf="isEditOpen && vm.state === 'loaded'">
+      <div class="modal-backdrop">
+        <div class="modal">
+
+          <h3>{{ isAddMode ? 'Add Data' : 'Edit' }}</h3>
+
+          <form [formGroup]="form" (ngSubmit)="saveEdit(vm.data.headers)">
+
+            <div class="form-grid">
+
+              <div class="form-field full-width">
+                <label>
+                  Core Name <span class="required">*</span>
+                </label>
+
+                <input type="text" formControlName="coreName" />
+
+                <div class="field-error"
+                  *ngIf="form.get('coreName')?.hasError('required') && (form.get('coreName')?.touched || saveAttempted)">
+                  <mat-icon class="error-icon">error</mat-icon>
+                  <span>Core name required</span>
+                </div>
+
+                <div class="field-error" *ngIf="
+    form.get('coreName')?.hasError('duplicate') &&
+    (form.get('coreName')?.touched || saveAttempted)
+  ">
+                  <mat-icon class="error-icon">error</mat-icon>
+                  <span>Core name already exists</span>
+                </div>
+              </div>
+
+              <ng-container formGroupName="values">
+                <div class="form-field" *ngFor="let h of vm.data.headers; trackBy: trackById">
+
+                  <label>{{ h.name }}</label>
+                  <input type="text" [formControlName]="h.id" />
+
+                </div>
+              </ng-container>
+
+            </div>
+
+            <div class="form-error" *ngIf="!isAddMode && saveAttempted && form.pristine">
+              <mat-icon class="error-icon">error</mat-icon>
+              <span class="error-text">
+                No changes detected. Please modify a value before saving.
+              </span>
+            </div>
+
+            <div class="modal-actions">
+
+              <button type="submit" class="ok" [disabled]="saving">
+                {{ saving ? 'Saving…' : 'Save' }}
+              </button>
+
+              <button type="button" class="cancel" [disabled]="saving" (click)="closeEdit()">
+                Cancel
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="isDeleteOpen">
+      <div class="modal-backdrop">
+        <div class="confirm-modal" (click)="$event.stopPropagation()">
+          <h3>Delete Row</h3>
+
+          <p>Are you sure you want to delete the entire row?</p>
+
+          <div class="modal-actions">
+
+            <button type="button" class="danger" (mousedown)="confirmDelete(); $event.preventDefault()">
+              Delete
+            </button>
+
+            <button type="button" class="cancel" (click)="closeDelete()">
+              Cancel
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </ng-container>
+</div>

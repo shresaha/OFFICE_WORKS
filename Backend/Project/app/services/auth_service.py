@@ -7,6 +7,7 @@ from app.repositories.user_repository import (
     create_user_raw,
     DuplicateEmailError,
 )
+
 from app.utils.password_utils import hash_password, verify_password
 from app.utils.jwt_utils import create_access_token
 from app.models.user_model import serialize_user, normalize_email

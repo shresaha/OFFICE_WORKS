@@ -11,6 +11,7 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.scss'],
 })
 
+
 export class App {
   private auth = inject(AuthService);
   private router = inject(Router);
@@ -32,13 +33,16 @@ export class App {
     );
   }
 
+
   openLogoutModal() {
     this.showConfirm = true;
   }
 
+
   cancelLogout() {
     this.showConfirm = false;
   }
+  
 
   confirmLogout() {
     this.showConfirm = false;

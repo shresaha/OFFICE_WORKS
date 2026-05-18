@@ -29,9 +29,6 @@ body {
   height: 100%;
 }
 
-
-/* styles.scss */
-
 .auth-wrapper {
   width: 360px;
   max-width: 92vw;
@@ -80,3 +77,7 @@ input {
   border-radius: 8px;
 }
 
+.mat-mdc-snack-bar-container.success-snackbar {
+  --mdc-snackbar-container-color: #2e7d32; 
+  --mdc-snackbar-supporting-text-color: #ffffff;
+}

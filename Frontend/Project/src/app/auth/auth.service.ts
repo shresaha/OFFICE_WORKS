@@ -38,6 +38,7 @@ export class AuthService {
       );
   }
 
+
   login(payload: LoginPayload) {
     return this.http.post<LoginResponse>(`${this.base}/auth/login`, payload).pipe(
       catchError((err: HttpErrorResponse) => {
@@ -49,11 +50,13 @@ export class AuthService {
     );
   }
 
+
   saveToken(token: string) {
     if (typeof window !== 'undefined') {
       localStorage.setItem('access_token', token);
     }
   }
+
 
   getToken(): string | null {
     if (typeof window === 'undefined') {
@@ -62,9 +65,11 @@ export class AuthService {
     return localStorage.getItem('access_token');
   }
 
+
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+
 
   logout() {
     if (typeof window !== 'undefined') {
@@ -72,6 +77,7 @@ export class AuthService {
     }
   }
 
+  
   getCurrentUser() {
     return this.http.get(`${this.base}/auth/me`);
   }

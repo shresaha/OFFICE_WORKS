@@ -1,0 +1,54 @@
+.dg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  table-layout: auto;
+}
+
+.dg-table th {
+  background: #f4f6f8;
+  font-weight: 600;
+  padding: 8px 10px;
+  border: 1px solid #dcdcdc;  
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dg-table td {
+  padding: 8px 10px;
+  border: 1px solid #e0e0e0;   
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dg-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.error {
+  color: #d32f2f;
+  padding: 8px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;        
+  border-top: 4px solid #3256D6;  
+  border-radius: 50%;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

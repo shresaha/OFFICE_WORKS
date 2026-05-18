@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 
+
 @Component({
   standalone: true,
   selector: 'app-login',
@@ -11,6 +12,8 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.html',
   styleUrls: ['./login.scss']
 })
+
+
 export class Login {
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
@@ -26,9 +29,11 @@ export class Login {
     password: ['', [Validators.required]],
   });
 
+
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
+
 
   submit() {
     this.serverError = null;
@@ -38,9 +43,12 @@ export class Login {
       return;
     }
 
+
     this.submitting = true;
 
+
     const { email, password } = this.form.getRawValue();
+    
 
     this.auth.login({ email, password } as any).subscribe({
       next: (res) => {
@@ -59,7 +67,6 @@ export class Login {
         }
         this.cdr.detectChanges();
       }
-
     });
   }
 }

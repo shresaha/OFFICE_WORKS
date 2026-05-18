@@ -1,0 +1,52 @@
+<div *ngIf="vm$ | async as vm">
+
+  <div *ngIf="vm.state === 'loading'" class="loading-container">
+    <div class="spinner"></div>
+  </div>
+
+  <div *ngIf="vm.state === 'error'">
+    {{ vm.error }}
+  </div>
+
+  <ng-container *ngIf="isLoaded(vm)">
+    <table class="dg-table">
+
+      <thead>
+
+        <tr>
+          <ng-container *ngFor="let h of vm.headers; trackBy: trackByHeader">
+
+            <th *ngIf="!h.children">
+              {{ h.headerName }}
+            </th>
+
+            <th *ngFor="let c of h.children; trackBy: trackByChild">
+              {{ c.headerName }}
+            </th>
+
+          </ng-container>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let row of vm.rows; trackBy: trackByRow">
+
+          <ng-container *ngFor="let h of vm.headers; trackBy: trackByHeader">
+
+            <td *ngIf="!h.children">
+              {{ getValue(row, h.field) }}
+            </td>
+
+            <td *ngFor="let c of h.children; trackBy: trackByChild">
+              {{ getValue(row, c.field) }}
+            </td>
+
+          </ng-container>
+
+        </tr>
+      </tbody>
+
+    </table>
+  </ng-container>
+
+</div>

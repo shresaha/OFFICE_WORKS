@@ -1,14 +1,13 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-
 import { Router, RouterLink } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-
 import { AuthService } from '../auth.service';
+
 
 @Component({
   standalone: true,
@@ -25,6 +24,8 @@ import { AuthService } from '../auth.service';
   templateUrl: './signup.html',
   styleUrls: ['./signup.scss'],
 })
+
+
 export class Signup {
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
@@ -41,13 +42,16 @@ export class Signup {
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
+
   get f() {
     return this.form.controls;
   }
 
+
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
+
 
   submit() {
    
@@ -58,9 +62,11 @@ export class Signup {
       return;
     }
 
+
     this.submitting = true;
 
     const { name, email, password } = this.form.getRawValue();
+    
 
     this.auth.signup({ name, email, password }).subscribe({
       next: () => {
